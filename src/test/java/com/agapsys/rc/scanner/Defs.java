@@ -16,6 +16,7 @@
 
 package com.agapsys.rc.scanner;
 
+import static com.agapsys.rc.scanner.TestUtils.getFile;
 import java.io.File;
 
 public class Defs {
@@ -24,8 +25,8 @@ public class Defs {
 	public static final File LIB_SRC_DIR;
 	
 	static {
-		LIB_JAR = new File("sample-lib/sample-lib-0.1.0.jar");
-		LIB_SRC_DIR = new File("sample-lib/src/src/main/java");
+		LIB_JAR = getFile("sample-lib/sample-lib-0.1.0.jar");
+		LIB_SRC_DIR = getFile("sample-lib/src/src/main/java");
 	}
 	// =========================================================================
 

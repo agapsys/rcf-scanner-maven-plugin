@@ -16,16 +16,15 @@
 
 package valid;
 
-import com.agapsys.rcf.Controller;
 import com.agapsys.rcf.HttpExchange;
 import com.agapsys.rcf.WebAction;
 import com.agapsys.rcf.WebController;
 
-@WebController
-public class ControllerWithClassName extends Controller {
+@WebController("aaa/bbb")
+public class Controller2  {
 	
-	@WebController
-	public static class InnerControllerWithClassName extends Controller {
+	@WebController("/ccc/ddd")
+	public static class InnerController {
 		
 		@WebAction
 		public void get(HttpExchange exchange) {}

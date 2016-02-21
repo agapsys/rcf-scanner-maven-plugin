@@ -14,17 +14,22 @@
  * limitations under the License.
  */
 
-package duplicate;
+package valid;
 
-import com.agapsys.rcf.Controller;
+import com.agapsys.rcf.HttpExchange;
+import com.agapsys.rcf.WebAction;
 import com.agapsys.rcf.WebController;
 
-public class DuplicateMappingTest {
-	@WebController("aaa")
-	public static class InnerController1 extends Controller {}
+@WebController("aaa/bbb")
+public class Controller1  {
 	
-	@WebController("bbb")
-	public static class InnerController2 extends Controller {}
+	@WebController("/ccc/ddd")
+	public static class InnerController {
+		
+		@WebAction
+		public void get(HttpExchange exchange) {}
+	}
 	
-
+	@WebAction
+	public void get(HttpExchange exchange) {}
 }

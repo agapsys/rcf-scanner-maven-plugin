@@ -28,12 +28,10 @@ public class JarFileTest {
 		
 		Set<String> scannedClasses = TestUtils.getEmbeddedInfo(Defs.LIB_JAR);
 		Set<String> expectedClasses = TestUtils.getStringSet(
-			"com.example.SecuredClass1",
-			"com.example.SecuredClass2",
-			"com.example.SecuredClass2$InnerSecuredClass1",
-			"com.example.SecuredClass2$InnerSecuredClass2",
-			"com.example.UnsecuredClass$InnerSecuredClass1",
-			"com.example.UnsecuredClass$InnerSecuredClass2"
+			"valid.Controller1",
+			"valid.Controller1.InnerController",
+			"valid.Controller2",
+			"valid.Controller2.InnerController"
 		);
 		
 		Assert.assertEquals(expectedClasses, scannedClasses);

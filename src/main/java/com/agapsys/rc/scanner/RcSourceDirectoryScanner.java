@@ -53,11 +53,6 @@ public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
 		if (controllerAnnotationInfo == null)
 			return false;
 
-		boolean extendsController = classInfo.superclassName.equals(RcScannerDefs.CONTROLLER_SUPERCLASS_NAME);
-		
-		if (!extendsController)
-			throw new ParsingException("Class %s is annotated with %s but does not extends %s", classInfo.className, RcScannerDefs.CONTROLLER_ANNOTATION_CLASS_NAME, RcScannerDefs.CONTROLLER_SUPERCLASS_NAME);
-		
 		if (!classInfo.isTopClass() && !classInfo.isStaticNested)
 			throw new ParsingException("Nested class must be static nested: %s", classInfo.className);
 		

@@ -17,6 +17,7 @@
 package com.agapsys.rc.scanner;
 
 import com.agapsys.mvn.scanner.parser.ParsingException;
+import static com.agapsys.rc.scanner.TestUtils.getFile;
 import java.io.File;
 import java.util.Set;
 import org.junit.Assert;
@@ -25,17 +26,46 @@ import org.junit.Test;
 public class SourceFileInfoTest {
 	
 	@Test
-	public void test() throws ParsingException {
-		String fileSeparator = System.getProperty("file.separator");
+	public void testValid() throws ParsingException {
+		File srcFile;
+		Set<String> expectedClasses;
+		Set<String> scannedClasses;
 		
-		Set<String> expectedClasses = TestUtils.getStringSet(
-			"com.example.UnsecuredClass$InnerSecuredClass1",
-			"com.example.UnsecuredClass$InnerSecuredClass2"
+		// ---------------------------------------------------------------------
+		expectedClasses = TestUtils.getStringSet(
+			"valid.Controller1",
+			"valid.Controller1.InnerController"
 		);
 		
-		File srcFile = new File(Defs.LIB_SRC_DIR, String.format("com%sexample%sUnsecuredClass.java", fileSeparator, fileSeparator));
-		Set<String> scannedClasses = TestUtils.scanJpaClasses(srcFile);
-		
+		srcFile = new File(getFile(Defs.LIB_SRC_DIR, "valid"), "Controller1.java");
+		scannedClasses = TestUtils.scanJpaClasses(srcFile);
 		Assert.assertEquals(expectedClasses, scannedClasses);
+		// ---------------------------------------------------------------------
+		
+		// ---------------------------------------------------------------------
+		expectedClasses = TestUtils.getStringSet(
+			"valid.Controller2",
+			"valid.Controller2.InnerController"
+		);
+		
+		srcFile = new File(getFile(Defs.LIB_SRC_DIR, "valid"), "Controller2.java");
+		scannedClasses = TestUtils.scanJpaClasses(srcFile);
+		Assert.assertEquals(expectedClasses, scannedClasses);
+		// ---------------------------------------------------------------------
+	}
+	
+	@Test
+	public void testInvalid() {
+		Throwable error = null;
+
+		try {
+			TestUtils.scanJpaClasses(new File(getFile(Defs.LIB_SRC_DIR, "invalid"), "InvalidNesting.java.src"));
+		} catch (ParsingException t) {
+			error = t;
+		}
+		
+		Assert.assertNotNull(error);
+		Assert.assertEquals("Nested class must be static nested: invalid.InvalidNesting.InvalidNestingController", error.getMessage());
+		
 	}
 }

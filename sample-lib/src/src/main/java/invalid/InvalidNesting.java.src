@@ -16,13 +16,18 @@
 
 package invalid;
 
+import com.agapsys.rcf.Controller;
 import com.agapsys.rcf.HttpExchange;
 import com.agapsys.rcf.WebAction;
 import com.agapsys.rcf.WebController;
 
-@WebController("aaa/bbb/*")
-public class InvalidMappingController  {
+public class InvalidNesting {
 	
-	@WebAction
-	public void get(HttpExchange exchange) {}
+	@WebController
+	public class InvalidNestingController extends Controller {
+		
+		@WebAction
+		public void get(HttpExchange exchange) {}
+	}
+	
 }

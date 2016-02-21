@@ -35,7 +35,6 @@ public class RcScannerDefs extends ScannerDefs {
 	static final String OPTION_INCLUDE_TESTS        = "includeTests";
 	
 	static final String CONTROLLER_ANNOTATION_CLASS_NAME = "com.agapsys.rcf.WebController";
-	static final String CONTROLLER_SUPERCLASS_NAME = "com.agapsys.rcf.Controller";
 	// =========================================================================
 	
 	// INSTANCE SCOPE ==========================================================

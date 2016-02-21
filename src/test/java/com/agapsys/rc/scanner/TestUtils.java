@@ -15,14 +15,13 @@
  */
 package com.agapsys.rc.scanner;
 
-import com.agapsys.rc.scanner.RcSourceDirectoryScanner;
-import com.agapsys.rc.scanner.RcScannerDefs;
 import com.agapsys.mvn.scanner.ScanInfo;
 import com.agapsys.mvn.scanner.parser.ClassInfo;
 import com.agapsys.mvn.scanner.parser.ParsingException;
 import java.io.File;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -30,6 +29,19 @@ import java.util.TreeSet;
  */
 public class TestUtils {
 	private TestUtils() {}
+	
+	private static String getPath(String posixPath) {
+		String separator = System.getProperty("file.separator");
+		return posixPath.replaceAll(Pattern.quote("/"), separator);
+	}
+	
+	public static File getFile(File parent, String child) {
+		return new File(parent, getPath(child));
+	}
+	
+	public static File getFile(String posixPath) {
+		return new File(getPath(posixPath));
+	}
 	
 	public static Set<String> getEmbeddedInfo(File jarFile) throws ParsingException {
 		RcScannerDefs defs = RcScannerDefs.getInstance();
@@ -44,7 +56,7 @@ public class TestUtils {
 		Set<String> classNameSet = new TreeSet<String>();
 		
 		for (ClassInfo classInfo : classInfoSet) {
-			classNameSet.add(classInfo.reflectionClassName);
+			classNameSet.add(classInfo.className);
 		}
 		
 		return classNameSet;
