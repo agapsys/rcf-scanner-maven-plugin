@@ -34,7 +34,7 @@ limitations under the License.
 	<dependencies>
         <dependency>
             <groupId>com.agapsys.libs</groupId>
-            <artifactId>rest-controller</artifactId>
+            <artifactId>rest-controller-framework</artifactId>
             <version>0.1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
