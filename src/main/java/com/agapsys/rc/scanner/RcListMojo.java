@@ -17,6 +17,8 @@ package com.agapsys.rc.scanner;
 
 import com.agapsys.mvn.scanner.AbstractListMojo;
 import com.agapsys.mvn.scanner.ScannerDefs;
+import static com.agapsys.rc.scanner.RcScannerDefs.log;
+import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
@@ -71,4 +73,12 @@ public class RcListMojo extends AbstractListMojo {
 	protected boolean includeTests() {
 		return includeTests;
 	}
+
+	@Override
+	public void execute() throws MojoExecutionException {
+		log("Listing controllers...");
+		super.execute();
+		log("Done!");
+	}
+	
 }

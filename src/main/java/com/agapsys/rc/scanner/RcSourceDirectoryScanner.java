@@ -19,6 +19,7 @@ import com.agapsys.mvn.scanner.SourceDirectoryScanner;
 import com.agapsys.mvn.scanner.parser.AnnotationInfo;
 import com.agapsys.mvn.scanner.parser.ClassInfo;
 import com.agapsys.mvn.scanner.parser.ParsingException;
+import static com.agapsys.rc.scanner.RcScannerDefs.log;
 import java.util.Collection;
 
 /**
@@ -45,7 +46,7 @@ public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
 	
 	// INSTANCE SCOPE ==========================================================
 	private RcSourceDirectoryScanner() {}
-	
+		
 	@Override
 	protected boolean shallBeIncluded(ClassInfo classInfo) throws ParsingException {
 		AnnotationInfo controllerAnnotationInfo = getAnnotationInfo(classInfo.annotations, RcScannerDefs.CONTROLLER_ANNOTATION_CLASS_NAME);
@@ -58,5 +59,11 @@ public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
 		
 		return true;
 	}
+	
+	@Override
+	protected void beforeInclude(ClassInfo classInfo) {
+		log("Detected controller: %s", classInfo.className);
+	}
 	// =========================================================================
+
 }

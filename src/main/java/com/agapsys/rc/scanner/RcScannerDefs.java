@@ -35,6 +35,13 @@ public class RcScannerDefs extends ScannerDefs {
 	static final String OPTION_INCLUDE_TESTS        = "includeTests";
 	
 	static final String CONTROLLER_ANNOTATION_CLASS_NAME = "com.agapsys.rcf.WebController";
+	
+	public static void log(String message, Object...msgArgs) {
+		if (msgArgs.length > 0)
+			message = String.format(message, msgArgs);
+		
+		System.out.println(message);
+	}
 	// =========================================================================
 	
 	// INSTANCE SCOPE ==========================================================
