@@ -23,43 +23,43 @@ import static com.agapsys.rc.scanner.RcScannerDefs.log;
 import java.util.Collection;
 
 /**
- * Security Implementation of Source Directory Scanner
+ * RCF implementation of {@linkplain SouceDirectoryScanner}
  * @author Leandro Oliveira (leandro@agapsys.com)
  */
 public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
 	// STATIC SCOPE ============================================================
 	private static RcSourceDirectoryScanner SINGLETON = new RcSourceDirectoryScanner();
-	
+
 	public static RcSourceDirectoryScanner getInstance() {
 		return SINGLETON;
 	}
-	
+
 	static AnnotationInfo getAnnotationInfo(Collection<AnnotationInfo> annotationInfoCollection, String annotationClassName) {
 		for (AnnotationInfo annotationInfo : annotationInfoCollection) {
 			if (annotationInfo.className.equals(annotationClassName))
 				return annotationInfo;
 		}
-		
+
 		return null;
 	}
 	// =========================================================================
-	
+
 	// INSTANCE SCOPE ==========================================================
 	private RcSourceDirectoryScanner() {}
-		
+
 	@Override
 	protected boolean shallBeIncluded(ClassInfo classInfo) throws ParsingException {
 		AnnotationInfo controllerAnnotationInfo = getAnnotationInfo(classInfo.annotations, RcScannerDefs.CONTROLLER_ANNOTATION_CLASS_NAME);
-		
+
 		if (controllerAnnotationInfo == null)
 			return false;
 
 		if (!classInfo.isTopClass() && !classInfo.isStaticNested)
 			throw new ParsingException("Nested class must be static nested: %s", classInfo.className);
-		
+
 		return true;
 	}
-	
+
 	@Override
 	protected void beforeInclude(ClassInfo classInfo) {
 		log("Detected controller: %s", classInfo.className);

@@ -19,7 +19,7 @@ import com.agapsys.mvn.scanner.ScanInfo;
 import com.agapsys.mvn.scanner.parser.ClassInfo;
 
 /**
- * Security implementation of ScanInfo
+ * RCF implementation of {@linkplain ScanInfo}
  * @author Leandro Oliveira (leandro@agapsys.com)
  */
 public class RcScanInfo extends ScanInfo {
@@ -28,5 +28,5 @@ public class RcScanInfo extends ScanInfo {
 	protected String getEntryString(ClassInfo classInfo) {
 		return classInfo.className;
 	}
-	
+
 }

@@ -26,7 +26,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 
 /**
- * Security implementation of AbstractListMojo
+ * RCF implementation of {@linkplain AbstractListMojo}
  * @author Leandro Oliveira (leandro@agapsys.com)
  */
 @Mojo(name = "list", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, requiresDependencyResolution = ResolutionScope.COMPILE)
@@ -34,7 +34,7 @@ public class RcListMojo extends AbstractListMojo {
 
 	@Parameter(property = "project", readonly = true)
 	private MavenProject mavenProject;
-	
+
 	@Override
 	protected MavenProject getMavenProject() {
 		return mavenProject;
@@ -42,7 +42,7 @@ public class RcListMojo extends AbstractListMojo {
 
 	@Parameter(defaultValue = "controllers")
 	private String filterProperty;
-	
+
 	@Override
 	protected String getFilterPropertyName() {
 		return filterProperty;
@@ -57,7 +57,7 @@ public class RcListMojo extends AbstractListMojo {
 	protected ScannerDefs getScannerDefs() {
 		return RcScannerDefs.getInstance();
 	}
-	
+
 	@Parameter(defaultValue = "false", name = RcScannerDefs.OPTION_INCLUDE_DEPENDENCIES)
 	private boolean includeDependencies;
 
@@ -65,7 +65,7 @@ public class RcListMojo extends AbstractListMojo {
 	protected boolean includeDependencies() {
 		return includeDependencies;
 	}
-	
+
 	@Parameter(defaultValue = "false", name = RcScannerDefs.OPTION_INCLUDE_TESTS)
 	private boolean includeTests;
 
@@ -80,5 +80,5 @@ public class RcListMojo extends AbstractListMojo {
 		super.execute();
 		log("Done!");
 	}
-	
+
 }

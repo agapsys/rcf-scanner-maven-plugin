@@ -20,33 +20,33 @@ import com.agapsys.mvn.scanner.ScannerDefs;
 import com.agapsys.mvn.scanner.SourceDirectoryScanner;
 
 /**
- * Security implementation of ScannerDefs
+ * RCF implementation of {@linkplain ScannerDefs}
  * @author Leandro Oliveira (leandro@agapsys.com)
  */
 public class RcScannerDefs extends ScannerDefs {
 	// STATIC SCOPE ============================================================
 	private static final RcScannerDefs SINGLETON = new RcScannerDefs();
-	
+
 	public static RcScannerDefs getInstance() {
 		return SINGLETON;
 	}
-	
+
 	static final String OPTION_INCLUDE_DEPENDENCIES = "includeDependencies";
 	static final String OPTION_INCLUDE_TESTS        = "includeTests";
-	
+
 	static final String CONTROLLER_ANNOTATION_CLASS_NAME = "com.agapsys.rcf.WebController";
-	
+
 	public static void log(String message, Object...msgArgs) {
 		if (msgArgs.length > 0)
 			message = String.format(message, msgArgs);
-		
+
 		System.out.println(message);
 	}
 	// =========================================================================
-	
+
 	// INSTANCE SCOPE ==========================================================
 	private RcScannerDefs() {}
-	
+
 	@Override
 	public SourceDirectoryScanner getSourceDirectoryScanner() {
 		return RcSourceDirectoryScanner.getInstance();
@@ -61,5 +61,5 @@ public class RcScannerDefs extends ScannerDefs {
 	public String getEmbeddedScanInfoFilename() {
 		return "rcf.info";
 	}
-	// =========================================================================	
+	// =========================================================================
 }

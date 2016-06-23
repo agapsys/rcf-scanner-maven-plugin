@@ -26,7 +26,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 
 /**
- * Security implementation of AbstractCreateMojo
+ * RCF implementation of {@linkplain AbstractCreateMojo}
  * @author Leandro Oliveira (leandro@agapsys.com)
  */
 @Mojo(name = "create", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, requiresDependencyResolution = ResolutionScope.COMPILE)
@@ -34,12 +34,12 @@ public class RcCreateMojo extends AbstractCreateMojo {
 
 	@Parameter(property = "project", readonly = true)
 	private MavenProject mavenProject;
-	
+
 	@Override
 	protected MavenProject getMavenProject() {
 		return mavenProject;
 	}
-	
+
 	@Parameter(defaultValue = "false", name = RcScannerDefs.OPTION_INCLUDE_DEPENDENCIES)
 	private boolean includeDependencies;
 
@@ -47,7 +47,7 @@ public class RcCreateMojo extends AbstractCreateMojo {
 	protected boolean includeDependencies() {
 		return includeDependencies;
 	}
-	
+
 	@Parameter(defaultValue = "false", name = RcScannerDefs.OPTION_INCLUDE_TESTS)
 	private boolean includeTests;
 
@@ -55,7 +55,7 @@ public class RcCreateMojo extends AbstractCreateMojo {
 	protected boolean includeTests() {
 		return includeTests;
 	}
-	
+
 	@Override
 	protected ScannerDefs getScannerDefs() {
 		return RcScannerDefs.getInstance();
@@ -66,5 +66,5 @@ public class RcCreateMojo extends AbstractCreateMojo {
 		log("Creating '%s'...", getScannerDefs().getEmbeddedScanInfoFilePath());
 		super.execute();
 		log("Done!");
-	}	
+	}
 }
