@@ -23,7 +23,7 @@ import static com.agapsys.rcf.scanner.RcScannerDefs.log;
 import java.util.Collection;
 
 /**
- * RCF implementation of {@linkplain SouceDirectoryScanner}
+ * RCF implementation of {@linkplain com.agapsys.mvn.scanner.SourceDirectoryScanner}
  */
 public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
 	// STATIC SCOPE ============================================================
