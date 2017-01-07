@@ -21,10 +21,10 @@ limitations under the License.
 
 	<groupId>com.agapsys</groupId>
 	<artifactId>rcf-scanner-maven-plugin</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<packaging>maven-plugin</packaging>
 
-	<name>REST Controller Framework Scanner (Maven Plugin)</name>
+	<name>REST Controller Framework (Scanner Maven Plugin)</name>
 	<description>Maven plugin which scans REST controllers for applications unsing Agapsys REST Controller Framework</description>
 	<url>https://github.com/agapsys/rcf-scanner-maven-plugin/</url>
 
@@ -37,8 +37,8 @@ limitations under the License.
 
 	<developers>
 		<developer>
-			<name>Leandro Oliveira</name>
-			<email>leandro@agapsys.com</email>
+			<name>Agapsys Tecnologia Ltda-ME</name>
+			<email>contact@agapsys.com</email>
 			<organization>Agapsys Tecnologia Ltda-ME</organization>
 			<organizationUrl>http://www.agapsys.com</organizationUrl>
 		</developer>
@@ -65,7 +65,7 @@ limitations under the License.
 		<dependency>
 			<groupId>com.agapsys</groupId>
 			<artifactId>scanner-maven-plugin-lib</artifactId>
-			<version>0.1.0-SNAPSHOT</version>
+			<version>0.1.0</version>
 		</dependency>
 
 		<!-- Provided dependencies -->

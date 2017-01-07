@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.agapsys.rc.scanner;
+package com.agapsys.rcf.scanner;
 
 import com.agapsys.mvn.scanner.AbstractCreateMojo;
 import com.agapsys.mvn.scanner.ScannerDefs;
-import static com.agapsys.rc.scanner.RcScannerDefs.log;
+import static com.agapsys.rcf.scanner.RcScannerDefs.log;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -27,7 +27,6 @@ import org.apache.maven.project.MavenProject;
 
 /**
  * RCF implementation of {@linkplain AbstractCreateMojo}
- * @author Leandro Oliveira (leandro@agapsys.com)
  */
 @Mojo(name = "create", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, requiresDependencyResolution = ResolutionScope.COMPILE)
 public class RcCreateMojo extends AbstractCreateMojo {

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.agapsys.rc.scanner;
+package com.agapsys.rcf.scanner;
 
 import com.agapsys.mvn.scanner.ScanInfo;
 import com.agapsys.mvn.scanner.ScannerDefs;
@@ -21,7 +21,6 @@ import com.agapsys.mvn.scanner.SourceDirectoryScanner;
 
 /**
  * RCF implementation of {@linkplain ScannerDefs}
- * @author Leandro Oliveira (leandro@agapsys.com)
  */
 public class RcScannerDefs extends ScannerDefs {
 	// STATIC SCOPE ============================================================

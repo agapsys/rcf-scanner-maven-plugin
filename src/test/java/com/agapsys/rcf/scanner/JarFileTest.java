@@ -14,38 +14,26 @@
  * limitations under the License.
  */
 
-package com.agapsys.rc.scanner;
+package com.agapsys.rcf.scanner;
 
 import com.agapsys.mvn.scanner.parser.ParsingException;
-import static com.agapsys.rc.scanner.TestUtils.getFile;
 import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class SourceDirectoryTest {
+public class JarFileTest {
 	
 	@Test
-	public void testValid() throws ParsingException {
-		Set<String> scannedClasses = TestUtils.scanJpaClasses(getFile(Defs.LIB_SRC_DIR, "valid"));
+	public void test() throws ParsingException {
+		
+		Set<String> scannedClasses = TestUtils.getEmbeddedInfo(Defs.LIB_JAR);
 		Set<String> expectedClasses = TestUtils.getStringSet(
 			"valid.Controller1",
 			"valid.Controller1.InnerController",
 			"valid.Controller2",
 			"valid.Controller2.InnerController"
 		);
-
-		Assert.assertEquals(expectedClasses, scannedClasses);
-	}
-	
-	@Test
-	public void testInvalid() throws ParsingException {
-		Throwable error = null;
 		
-		try {
-			TestUtils.scanJpaClasses(Defs.LIB_SRC_DIR);
-		} catch (ParsingException ex) {
-			error = ex;
-		}
-		Assert.assertNull(error); // <-- invalid files has ".java.src" extension which causes file skippin during scan
+		Assert.assertEquals(expectedClasses, scannedClasses);
 	}
 }

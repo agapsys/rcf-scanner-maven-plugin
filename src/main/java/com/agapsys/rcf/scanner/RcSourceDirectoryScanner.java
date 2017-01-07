@@ -13,18 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.agapsys.rc.scanner;
+package com.agapsys.rcf.scanner;
 
 import com.agapsys.mvn.scanner.SourceDirectoryScanner;
 import com.agapsys.mvn.scanner.parser.AnnotationInfo;
 import com.agapsys.mvn.scanner.parser.ClassInfo;
 import com.agapsys.mvn.scanner.parser.ParsingException;
-import static com.agapsys.rc.scanner.RcScannerDefs.log;
+import static com.agapsys.rcf.scanner.RcScannerDefs.log;
 import java.util.Collection;
 
 /**
  * RCF implementation of {@linkplain SouceDirectoryScanner}
- * @author Leandro Oliveira (leandro@agapsys.com)
  */
 public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
 	// STATIC SCOPE ============================================================

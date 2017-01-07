@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.agapsys.rc.scanner;
+package com.agapsys.rcf.scanner;
 
-import static com.agapsys.rc.scanner.TestUtils.getFile;
+import static com.agapsys.rcf.scanner.TestUtils.getFile;
 import java.io.File;
 
 public class Defs {
