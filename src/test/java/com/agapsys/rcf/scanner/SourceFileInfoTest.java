@@ -24,48 +24,48 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class SourceFileInfoTest {
-	
-	@Test
-	public void testValid() throws ParsingException {
-		File srcFile;
-		Set<String> expectedClasses;
-		Set<String> scannedClasses;
-		
-		// ---------------------------------------------------------------------
-		expectedClasses = TestUtils.getStringSet(
-			"valid.Controller1",
-			"valid.Controller1.InnerController"
-		);
-		
-		srcFile = new File(getFile(Defs.LIB_SRC_DIR, "valid"), "Controller1.java");
-		scannedClasses = TestUtils.scanJpaClasses(srcFile);
-		Assert.assertEquals(expectedClasses, scannedClasses);
-		// ---------------------------------------------------------------------
-		
-		// ---------------------------------------------------------------------
-		expectedClasses = TestUtils.getStringSet(
-			"valid.Controller2",
-			"valid.Controller2.InnerController"
-		);
-		
-		srcFile = new File(getFile(Defs.LIB_SRC_DIR, "valid"), "Controller2.java");
-		scannedClasses = TestUtils.scanJpaClasses(srcFile);
-		Assert.assertEquals(expectedClasses, scannedClasses);
-		// ---------------------------------------------------------------------
-	}
-	
-	@Test
-	public void testInvalid() {
-		Throwable error = null;
+    
+    @Test
+    public void testValid() throws ParsingException {
+        File srcFile;
+        Set<String> expectedClasses;
+        Set<String> scannedClasses;
+        
+        // ---------------------------------------------------------------------
+        expectedClasses = TestUtils.getStringSet(
+            "valid.Controller1",
+            "valid.Controller1.InnerController"
+        );
+        
+        srcFile = new File(getFile(Defs.LIB_SRC_DIR, "valid"), "Controller1.java");
+        scannedClasses = TestUtils.scanJpaClasses(srcFile);
+        Assert.assertEquals(expectedClasses, scannedClasses);
+        // ---------------------------------------------------------------------
+        
+        // ---------------------------------------------------------------------
+        expectedClasses = TestUtils.getStringSet(
+            "valid.Controller2",
+            "valid.Controller2.InnerController"
+        );
+        
+        srcFile = new File(getFile(Defs.LIB_SRC_DIR, "valid"), "Controller2.java");
+        scannedClasses = TestUtils.scanJpaClasses(srcFile);
+        Assert.assertEquals(expectedClasses, scannedClasses);
+        // ---------------------------------------------------------------------
+    }
+    
+    @Test
+    public void testInvalid() {
+        Throwable error = null;
 
-		try {
-			TestUtils.scanJpaClasses(new File(getFile(Defs.LIB_SRC_DIR, "invalid"), "InvalidNesting.java.src"));
-		} catch (ParsingException t) {
-			error = t;
-		}
-		
-		Assert.assertNotNull(error);
-		Assert.assertEquals("Nested class must be static nested: invalid.InvalidNesting.InvalidNestingController", error.getMessage());
-		
-	}
+        try {
+            TestUtils.scanJpaClasses(new File(getFile(Defs.LIB_SRC_DIR, "invalid"), "InvalidNesting.java.src"));
+        } catch (ParsingException t) {
+            error = t;
+        }
+        
+        Assert.assertNotNull(error);
+        Assert.assertEquals("Nested class must be static nested: invalid.InvalidNesting.InvalidNestingController", error.getMessage());
+        
+    }
 }

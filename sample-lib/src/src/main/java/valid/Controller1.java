@@ -22,14 +22,14 @@ import com.agapsys.rcf.WebController;
 
 @WebController("aaa/bbb")
 public class Controller1  {
-	
-	@WebController("/ccc/ddd")
-	public static class InnerController {
-		
-		@WebAction
-		public void get(HttpExchange exchange) {}
-	}
-	
-	@WebAction
-	public void get(HttpExchange exchange) {}
+    
+    @WebController("/ccc/ddd")
+    public static class InnerController {
+        
+        @WebAction
+        public void get(HttpExchange exchange) {}
+    }
+    
+    @WebAction
+    public void get(HttpExchange exchange) {}
 }

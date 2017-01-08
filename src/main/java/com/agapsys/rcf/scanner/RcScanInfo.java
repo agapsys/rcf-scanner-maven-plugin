@@ -23,9 +23,9 @@ import com.agapsys.mvn.scanner.parser.ClassInfo;
  */
 public class RcScanInfo extends ScanInfo {
 
-	@Override
-	protected String getEntryString(ClassInfo classInfo) {
-		return classInfo.className;
-	}
+    @Override
+    protected String getEntryString(ClassInfo classInfo) {
+        return classInfo.className;
+    }
 
 }

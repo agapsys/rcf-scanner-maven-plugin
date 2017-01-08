@@ -26,43 +26,43 @@ import java.util.Collection;
  * RCF implementation of {@linkplain com.agapsys.mvn.scanner.SourceDirectoryScanner}
  */
 public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
-	// STATIC SCOPE ============================================================
-	private static RcSourceDirectoryScanner SINGLETON = new RcSourceDirectoryScanner();
+    // STATIC SCOPE ============================================================
+    private static RcSourceDirectoryScanner SINGLETON = new RcSourceDirectoryScanner();
 
-	public static RcSourceDirectoryScanner getInstance() {
-		return SINGLETON;
-	}
+    public static RcSourceDirectoryScanner getInstance() {
+        return SINGLETON;
+    }
 
-	static AnnotationInfo getAnnotationInfo(Collection<AnnotationInfo> annotationInfoCollection, String annotationClassName) {
-		for (AnnotationInfo annotationInfo : annotationInfoCollection) {
-			if (annotationInfo.className.equals(annotationClassName))
-				return annotationInfo;
-		}
+    static AnnotationInfo getAnnotationInfo(Collection<AnnotationInfo> annotationInfoCollection, String annotationClassName) {
+        for (AnnotationInfo annotationInfo : annotationInfoCollection) {
+            if (annotationInfo.className.equals(annotationClassName))
+                return annotationInfo;
+        }
 
-		return null;
-	}
-	// =========================================================================
+        return null;
+    }
+    // =========================================================================
 
-	// INSTANCE SCOPE ==========================================================
-	private RcSourceDirectoryScanner() {}
+    // INSTANCE SCOPE ==========================================================
+    private RcSourceDirectoryScanner() {}
 
-	@Override
-	protected boolean shallBeIncluded(ClassInfo classInfo) throws ParsingException {
-		AnnotationInfo controllerAnnotationInfo = getAnnotationInfo(classInfo.annotations, RcScannerDefs.CONTROLLER_ANNOTATION_CLASS_NAME);
+    @Override
+    protected boolean shallBeIncluded(ClassInfo classInfo) throws ParsingException {
+        AnnotationInfo controllerAnnotationInfo = getAnnotationInfo(classInfo.annotations, RcScannerDefs.CONTROLLER_ANNOTATION_CLASS_NAME);
 
-		if (controllerAnnotationInfo == null)
-			return false;
+        if (controllerAnnotationInfo == null)
+            return false;
 
-		if (!classInfo.isTopClass() && !classInfo.isStaticNested)
-			throw new ParsingException("Nested class must be static nested: %s", classInfo.className);
+        if (!classInfo.isTopClass() && !classInfo.isStaticNested)
+            throw new ParsingException("Nested class must be static nested: %s", classInfo.className);
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	protected void beforeInclude(ClassInfo classInfo) {
-		log("Detected controller: %s", classInfo.className);
-	}
-	// =========================================================================
+    @Override
+    protected void beforeInclude(ClassInfo classInfo) {
+        log("Detected controller: %s", classInfo.className);
+    }
+    // =========================================================================
 
 }

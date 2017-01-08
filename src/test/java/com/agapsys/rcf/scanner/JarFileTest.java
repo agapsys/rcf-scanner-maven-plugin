@@ -22,18 +22,18 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class JarFileTest {
-	
-	@Test
-	public void test() throws ParsingException {
-		
-		Set<String> scannedClasses = TestUtils.getEmbeddedInfo(Defs.LIB_JAR);
-		Set<String> expectedClasses = TestUtils.getStringSet(
-			"valid.Controller1",
-			"valid.Controller1.InnerController",
-			"valid.Controller2",
-			"valid.Controller2.InnerController"
-		);
-		
-		Assert.assertEquals(expectedClasses, scannedClasses);
-	}
+    
+    @Test
+    public void test() throws ParsingException {
+        
+        Set<String> scannedClasses = TestUtils.getEmbeddedInfo(Defs.LIB_JAR);
+        Set<String> expectedClasses = TestUtils.getStringSet(
+            "valid.Controller1",
+            "valid.Controller1.InnerController",
+            "valid.Controller2",
+            "valid.Controller2.InnerController"
+        );
+        
+        Assert.assertEquals(expectedClasses, scannedClasses);
+    }
 }

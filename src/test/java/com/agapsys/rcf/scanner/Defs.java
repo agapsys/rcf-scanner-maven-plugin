@@ -20,17 +20,17 @@ import static com.agapsys.rcf.scanner.TestUtils.getFile;
 import java.io.File;
 
 public class Defs {
-	// CLASS SCOPE =============================================================
-	public static final File LIB_JAR;
-	public static final File LIB_SRC_DIR;
-	
-	static {
-		LIB_JAR = getFile("sample-lib/sample-lib-0.1.0.jar");
-		LIB_SRC_DIR = getFile("sample-lib/src/src/main/java");
-	}
-	// =========================================================================
+    // CLASS SCOPE =============================================================
+    public static final File LIB_JAR;
+    public static final File LIB_SRC_DIR;
+    
+    static {
+        LIB_JAR = getFile("sample-lib/sample-lib-0.1.0.jar");
+        LIB_SRC_DIR = getFile("sample-lib/src/src/main/java");
+    }
+    // =========================================================================
 
-	// INSTANCE SCOPE ==========================================================
-	private Defs() {}
-	// =========================================================================
+    // INSTANCE SCOPE ==========================================================
+    private Defs() {}
+    // =========================================================================
 }

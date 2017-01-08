@@ -23,42 +23,42 @@ import com.agapsys.mvn.scanner.SourceDirectoryScanner;
  * RCF implementation of {@linkplain ScannerDefs}
  */
 public class RcScannerDefs extends ScannerDefs {
-	// STATIC SCOPE ============================================================
-	private static final RcScannerDefs SINGLETON = new RcScannerDefs();
+    // STATIC SCOPE ============================================================
+    private static final RcScannerDefs SINGLETON = new RcScannerDefs();
 
-	public static RcScannerDefs getInstance() {
-		return SINGLETON;
-	}
+    public static RcScannerDefs getInstance() {
+        return SINGLETON;
+    }
 
-	static final String OPTION_INCLUDE_DEPENDENCIES = "includeDependencies";
-	static final String OPTION_INCLUDE_TESTS        = "includeTests";
+    static final String OPTION_INCLUDE_DEPENDENCIES = "includeDependencies";
+    static final String OPTION_INCLUDE_TESTS        = "includeTests";
 
-	static final String CONTROLLER_ANNOTATION_CLASS_NAME = "com.agapsys.rcf.WebController";
+    static final String CONTROLLER_ANNOTATION_CLASS_NAME = "com.agapsys.rcf.WebController";
 
-	public static void log(String message, Object...msgArgs) {
-		if (msgArgs.length > 0)
-			message = String.format(message, msgArgs);
+    public static void log(String message, Object...msgArgs) {
+        if (msgArgs.length > 0)
+            message = String.format(message, msgArgs);
 
-		System.out.println(message);
-	}
-	// =========================================================================
+        System.out.println(message);
+    }
+    // =========================================================================
 
-	// INSTANCE SCOPE ==========================================================
-	private RcScannerDefs() {}
+    // INSTANCE SCOPE ==========================================================
+    private RcScannerDefs() {}
 
-	@Override
-	public SourceDirectoryScanner getSourceDirectoryScanner() {
-		return RcSourceDirectoryScanner.getInstance();
-	}
+    @Override
+    public SourceDirectoryScanner getSourceDirectoryScanner() {
+        return RcSourceDirectoryScanner.getInstance();
+    }
 
-	@Override
-	public ScanInfo getScanInfoInstance() {
-		return new RcScanInfo();
-	}
+    @Override
+    public ScanInfo getScanInfoInstance() {
+        return new RcScanInfo();
+    }
 
-	@Override
-	public String getEmbeddedScanInfoFilename() {
-		return "rcf.info";
-	}
-	// =========================================================================
+    @Override
+    public String getEmbeddedScanInfoFilename() {
+        return "rcf.info";
+    }
+    // =========================================================================
 }

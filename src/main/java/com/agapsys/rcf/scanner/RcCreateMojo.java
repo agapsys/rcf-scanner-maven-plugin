@@ -31,39 +31,39 @@ import org.apache.maven.project.MavenProject;
 @Mojo(name = "create", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, requiresDependencyResolution = ResolutionScope.COMPILE)
 public class RcCreateMojo extends AbstractCreateMojo {
 
-	@Parameter(property = "project", readonly = true)
-	private MavenProject mavenProject;
+    @Parameter(property = "project", readonly = true)
+    private MavenProject mavenProject;
 
-	@Override
-	protected MavenProject getMavenProject() {
-		return mavenProject;
-	}
+    @Override
+    protected MavenProject getMavenProject() {
+        return mavenProject;
+    }
 
-	@Parameter(defaultValue = "false", name = RcScannerDefs.OPTION_INCLUDE_DEPENDENCIES)
-	private boolean includeDependencies;
+    @Parameter(defaultValue = "false", name = RcScannerDefs.OPTION_INCLUDE_DEPENDENCIES)
+    private boolean includeDependencies;
 
-	@Override
-	protected boolean includeDependencies() {
-		return includeDependencies;
-	}
+    @Override
+    protected boolean includeDependencies() {
+        return includeDependencies;
+    }
 
-	@Parameter(defaultValue = "false", name = RcScannerDefs.OPTION_INCLUDE_TESTS)
-	private boolean includeTests;
+    @Parameter(defaultValue = "false", name = RcScannerDefs.OPTION_INCLUDE_TESTS)
+    private boolean includeTests;
 
-	@Override
-	protected boolean includeTests() {
-		return includeTests;
-	}
+    @Override
+    protected boolean includeTests() {
+        return includeTests;
+    }
 
-	@Override
-	protected ScannerDefs getScannerDefs() {
-		return RcScannerDefs.getInstance();
-	}
+    @Override
+    protected ScannerDefs getScannerDefs() {
+        return RcScannerDefs.getInstance();
+    }
 
-	@Override
-	public void execute() throws MojoExecutionException {
-		log("Creating '%s'...", getScannerDefs().getEmbeddedScanInfoFilePath());
-		super.execute();
-		log("Done!");
-	}
+    @Override
+    public void execute() throws MojoExecutionException {
+        log("Creating '%s'...", getScannerDefs().getEmbeddedScanInfoFilePath());
+        super.execute();
+        log("Done!");
+    }
 }

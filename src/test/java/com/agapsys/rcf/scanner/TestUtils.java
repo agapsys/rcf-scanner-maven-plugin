@@ -24,50 +24,50 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 public class TestUtils {
-	private TestUtils() {}
+    private TestUtils() {}
 
-	private static String getPath(String posixPath) {
-		String separator = System.getProperty("file.separator");
-		return posixPath.replaceAll(Pattern.quote("/"), separator);
-	}
+    private static String getPath(String posixPath) {
+        String separator = System.getProperty("file.separator");
+        return posixPath.replaceAll(Pattern.quote("/"), separator);
+    }
 
-	public static File getFile(File parent, String child) {
-		return new File(parent, getPath(child));
-	}
+    public static File getFile(File parent, String child) {
+        return new File(parent, getPath(child));
+    }
 
-	public static File getFile(String posixPath) {
-		return new File(getPath(posixPath));
-	}
+    public static File getFile(String posixPath) {
+        return new File(getPath(posixPath));
+    }
 
-	public static Set<String> getEmbeddedInfo(File jarFile) throws ParsingException {
-		RcScannerDefs defs = RcScannerDefs.getInstance();
-		ScanInfo scanInfo = defs.getScanInfoInstance();
-		scanInfo.addJar(jarFile, defs.getEmbeddedScanInfoFilePath(), defs.getEmbeddedScanInfoFileEncoding());
-		return scanInfo.getEntries();
-	}
+    public static Set<String> getEmbeddedInfo(File jarFile) throws ParsingException {
+        RcScannerDefs defs = RcScannerDefs.getInstance();
+        ScanInfo scanInfo = defs.getScanInfoInstance();
+        scanInfo.addJar(jarFile, defs.getEmbeddedScanInfoFilePath(), defs.getEmbeddedScanInfoFileEncoding());
+        return scanInfo.getEntries();
+    }
 
-	public static Set<String> scanJpaClasses(File srcDirOrFile) throws ParsingException {
+    public static Set<String> scanJpaClasses(File srcDirOrFile) throws ParsingException {
 
-		Set<ClassInfo> classInfoSet = RcSourceDirectoryScanner.getInstance().getFilteredClasses(srcDirOrFile);
-		Set<String> classNameSet = new TreeSet<String>();
+        Set<ClassInfo> classInfoSet = RcSourceDirectoryScanner.getInstance().getFilteredClasses(srcDirOrFile);
+        Set<String> classNameSet = new TreeSet<String>();
 
-		for (ClassInfo classInfo : classInfoSet) {
-			classNameSet.add(classInfo.className);
-		}
+        for (ClassInfo classInfo : classInfoSet) {
+            classNameSet.add(classInfo.className);
+        }
 
-		return classNameSet;
-	}
+        return classNameSet;
+    }
 
-	public static Set<String> getStringSet(String...elements) {
-		Set<String> stringList = new TreeSet<String>();
+    public static Set<String> getStringSet(String...elements) {
+        Set<String> stringList = new TreeSet<String>();
 
-		for (String element : elements) {
-			if (element == null || element.trim().isEmpty())
-				throw new IllegalArgumentException("Null/Empty element");
+        for (String element : elements) {
+            if (element == null || element.trim().isEmpty())
+                throw new IllegalArgumentException("Null/Empty element");
 
-			stringList.add(element);
-		}
+            stringList.add(element);
+        }
 
-		return stringList;
-	}
+        return stringList;
+    }
 }

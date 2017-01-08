@@ -23,29 +23,29 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class SourceDirectoryTest {
-	
-	@Test
-	public void testValid() throws ParsingException {
-		Set<String> scannedClasses = TestUtils.scanJpaClasses(getFile(Defs.LIB_SRC_DIR, "valid"));
-		Set<String> expectedClasses = TestUtils.getStringSet(
-			"valid.Controller1",
-			"valid.Controller1.InnerController",
-			"valid.Controller2",
-			"valid.Controller2.InnerController"
-		);
+    
+    @Test
+    public void testValid() throws ParsingException {
+        Set<String> scannedClasses = TestUtils.scanJpaClasses(getFile(Defs.LIB_SRC_DIR, "valid"));
+        Set<String> expectedClasses = TestUtils.getStringSet(
+            "valid.Controller1",
+            "valid.Controller1.InnerController",
+            "valid.Controller2",
+            "valid.Controller2.InnerController"
+        );
 
-		Assert.assertEquals(expectedClasses, scannedClasses);
-	}
-	
-	@Test
-	public void testInvalid() throws ParsingException {
-		Throwable error = null;
-		
-		try {
-			TestUtils.scanJpaClasses(Defs.LIB_SRC_DIR);
-		} catch (ParsingException ex) {
-			error = ex;
-		}
-		Assert.assertNull(error); // <-- invalid files has ".java.src" extension which causes file skippin during scan
-	}
+        Assert.assertEquals(expectedClasses, scannedClasses);
+    }
+    
+    @Test
+    public void testInvalid() throws ParsingException {
+        Throwable error = null;
+        
+        try {
+            TestUtils.scanJpaClasses(Defs.LIB_SRC_DIR);
+        } catch (ParsingException ex) {
+            error = ex;
+        }
+        Assert.assertNull(error); // <-- invalid files has ".java.src" extension which causes file skippin during scan
+    }
 }

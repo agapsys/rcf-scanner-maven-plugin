@@ -23,66 +23,66 @@ limitations under the License.
     <version>0.1.0</version>
     <packaging>jar</packaging>
     
-	<properties>
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
     
-	<name>sample-lib (REST Controller Scanner Maven Plugin)</name>
+    <name>sample-lib (REST Controller Scanner Maven Plugin)</name>
     
-	<dependencies>
+    <dependencies>
         <dependency>
             <groupId>com.agapsys.libs</groupId>
             <artifactId>rcf</artifactId>
             <version>0.1.0</version>
         </dependency>
     </dependencies>
-	
-	<build>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-		
-		<plugins>
-			<plugin>
-				<groupId>com.agapsys.plugins</groupId>
-				<artifactId>rcf-scanner-maven-plugin</artifactId>
-				<version>0.1.0</version>
-				<executions>
-					<execution>
-						<id>create-src-info</id>
-						<goals>
-							<goal>create</goal>  
-						</goals>
-					</execution>
-					<execution>
-						<id>create-test-info</id>
-						<phase>generate-test-resources</phase>
-						<goals>
-							<goal>create</goal>
-						</goals>
-						<configuration>
-							<includeDependencies>true</includeDependencies>
-							<includeTests>true</includeTests>
-						</configuration>
-					</execution>
-					<execution>
-						<id>filter-test-resources</id>
-						<phase>generate-test-resources</phase>
-						<goals>
-							<goal>list</goal>
-						</goals>
-						<configuration>
-							<includeDependencies>true</includeDependencies>
-							<includeTests>true</includeTests>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+    
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+        
+        <plugins>
+            <plugin>
+                <groupId>com.agapsys.plugins</groupId>
+                <artifactId>rcf-scanner-maven-plugin</artifactId>
+                <version>0.1.0</version>
+                <executions>
+                    <execution>
+                        <id>create-src-info</id>
+                        <goals>
+                            <goal>create</goal>  
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-test-info</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                        <configuration>
+                            <includeDependencies>true</includeDependencies>
+                            <includeTests>true</includeTests>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>filter-test-resources</id>
+                        <phase>generate-test-resources</phase>
+                        <goals>
+                            <goal>list</goal>
+                        </goals>
+                        <configuration>
+                            <includeDependencies>true</includeDependencies>
+                            <includeTests>true</includeTests>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
