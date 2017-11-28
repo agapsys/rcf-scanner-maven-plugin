@@ -38,7 +38,7 @@ public class SourceFileInfoTest {
         );
         
         srcFile = new File(getFile(Defs.LIB_SRC_DIR, "valid"), "Controller1.java");
-        scannedClasses = TestUtils.scanJpaClasses(srcFile);
+        scannedClasses = TestUtils.scanClasses(srcFile);
         Assert.assertEquals(expectedClasses, scannedClasses);
         // ---------------------------------------------------------------------
         
@@ -49,7 +49,7 @@ public class SourceFileInfoTest {
         );
         
         srcFile = new File(getFile(Defs.LIB_SRC_DIR, "valid"), "Controller2.java");
-        scannedClasses = TestUtils.scanJpaClasses(srcFile);
+        scannedClasses = TestUtils.scanClasses(srcFile);
         Assert.assertEquals(expectedClasses, scannedClasses);
         // ---------------------------------------------------------------------
     }
@@ -59,7 +59,7 @@ public class SourceFileInfoTest {
         Throwable error = null;
 
         try {
-            TestUtils.scanJpaClasses(new File(getFile(Defs.LIB_SRC_DIR, "invalid"), "InvalidNesting.java.src"));
+            TestUtils.scanClasses(new File(getFile(Defs.LIB_SRC_DIR, "invalid"), "InvalidNesting.java.src"));
         } catch (ParsingException t) {
             error = t;
         }

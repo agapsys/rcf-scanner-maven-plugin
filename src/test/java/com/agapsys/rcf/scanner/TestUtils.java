@@ -46,9 +46,11 @@ public class TestUtils {
         return scanInfo.getEntries();
     }
 
-    public static Set<String> scanJpaClasses(File srcDirOrFile) throws ParsingException {
+    public static Set<String> scanClasses(File srcDirOrFile) throws ParsingException {
+		RcSourceDirectoryScanner scanner = RcSourceDirectoryScanner.getInstance();
+		scanner.reset();
 
-        Set<ClassInfo> classInfoSet = RcSourceDirectoryScanner.getInstance().getFilteredClasses(srcDirOrFile);
+        Set<ClassInfo> classInfoSet = scanner.getFilteredClasses(srcDirOrFile);
         Set<String> classNameSet = new TreeSet<String>();
 
         for (ClassInfo classInfo : classInfoSet) {
