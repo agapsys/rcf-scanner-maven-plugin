@@ -21,6 +21,10 @@ import com.agapsys.mvn.scanner.parser.ClassInfo;
 import com.agapsys.mvn.scanner.parser.ParsingException;
 import static com.agapsys.rcf.scanner.RcScannerDefs.log;
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * RCF implementation of {@linkplain com.agapsys.mvn.scanner.SourceDirectoryScanner}
@@ -33,25 +37,44 @@ public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
         return SINGLETON;
     }
 
-    static AnnotationInfo getAnnotationInfo(Collection<AnnotationInfo> annotationInfoCollection, String annotationClassName) {
+    private static boolean _matchesControllerAnnotation(Collection<AnnotationInfo> annotationInfoCollection) {
+
         for (AnnotationInfo annotationInfo : annotationInfoCollection) {
-            if (annotationInfo.className.equals(annotationClassName))
-                return annotationInfo;
+            if (annotationInfo.className.equals(RcScannerDefs.CONTROLLER_ANNOTATION_CLASS_NAME))
+                return true;
         }
 
-        return null;
+        return false;
     }
+
+	private static List<AnnotationInfo> _getControllerAnnotations(ClassInfo classInfo) {
+		List<AnnotationInfo> controllerAnnotations = new LinkedList<AnnotationInfo>();
+
+		for (AnnotationInfo annotationInfo : classInfo.annotations) {
+			if (annotationInfo.className.equals(RcScannerDefs.CONTROLLER_ANNOTATION_CLASS_NAME)) {
+				controllerAnnotations.add(annotationInfo);
+			}
+		}
+
+		return controllerAnnotations;
+	}
     // =========================================================================
 
     // INSTANCE SCOPE ==========================================================
     private RcSourceDirectoryScanner() {}
 
+	private final Map<String, ClassInfo> mappedControllers = new LinkedHashMap<String, ClassInfo>();
+
+	@Override
+	public void reset() {
+		super.reset();
+		mappedControllers.clear();
+	}
+
     @Override
     protected boolean shallBeIncluded(ClassInfo classInfo) throws ParsingException {
-        AnnotationInfo controllerAnnotationInfo = getAnnotationInfo(classInfo.annotations, RcScannerDefs.CONTROLLER_ANNOTATION_CLASS_NAME);
-
-        if (controllerAnnotationInfo == null)
-            return false;
+        if (!_matchesControllerAnnotation(classInfo.annotations))
+			return false;
 
         if (!classInfo.isTopClass() && !classInfo.isStaticNested)
             throw new ParsingException("Nested class must be static nested: %s", classInfo.className);
@@ -61,7 +84,19 @@ public class RcSourceDirectoryScanner extends SourceDirectoryScanner {
 
     @Override
     protected void beforeInclude(ClassInfo classInfo) {
-        log("Detected controller: %s", classInfo.className);
+
+		for (AnnotationInfo mappingAnnotation : _getControllerAnnotations(classInfo)) {
+			String mapping = mappingAnnotation.memberValue == null ? classInfo.getSimpleName() : mappingAnnotation.memberValue;
+
+			ClassInfo mappedClassInfo = mappedControllers.get(mapping);
+
+			if (mappedClassInfo != null)
+				throw new RuntimeException(String.format("Dupplicate mapping for '%s' (classes: '%s' and '%s')", mapping, mappedControllers.get(mapping).className, classInfo.className));
+
+			mappedControllers.put(mapping, classInfo);
+		}
+
+		log("Detected controller: %s", classInfo.className);
     }
     // =========================================================================
 
