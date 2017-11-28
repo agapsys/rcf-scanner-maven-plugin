@@ -20,16 +20,16 @@ import com.agapsys.rcf.HttpExchange;
 import com.agapsys.rcf.WebAction;
 import com.agapsys.rcf.WebController;
 
-@WebController("aaa/bbb")
+@WebController("aaa/bbb2")
 public class Controller2  {
-    
-    @WebController("/ccc/ddd")
+
+    @WebController("/ccc/ddd2")
     public static class InnerController {
-        
+
         @WebAction
         public void get(HttpExchange exchange) {}
     }
-    
+
     @WebAction
     public void get(HttpExchange exchange) {}
 }

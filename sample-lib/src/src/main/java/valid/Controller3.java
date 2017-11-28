@@ -16,20 +16,7 @@
 
 package valid;
 
-import com.agapsys.rcf.HttpExchange;
-import com.agapsys.rcf.WebAction;
 import com.agapsys.rcf.WebController;
 
-@WebController("aaa/bbb1")
-public class Controller1  {
-
-    @WebController("/ccc/ddd1")
-    public static class InnerController {
-
-        @WebAction
-        public void get(HttpExchange exchange) {}
-    }
-
-    @WebAction
-    public void get(HttpExchange exchange) {}
-}
+@WebController
+public class Controller3 {}
