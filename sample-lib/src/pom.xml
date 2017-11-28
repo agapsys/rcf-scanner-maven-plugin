@@ -18,9 +18,9 @@ limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
+    <groupId>com.agapsys.example</groupId>
     <artifactId>sample-lib</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.0-20171127</version>
     <packaging>jar</packaging>
     
     <properties>
@@ -35,7 +35,7 @@ limitations under the License.
         <dependency>
             <groupId>com.agapsys.libs</groupId>
             <artifactId>rcf</artifactId>
-            <version>0.1.0</version>
+            <version>[0.1.0, 1.0.0)</version>
         </dependency>
     </dependencies>
     
@@ -49,9 +49,9 @@ limitations under the License.
         
         <plugins>
             <plugin>
-                <groupId>com.agapsys.plugins</groupId>
+                <groupId>com.agapsys</groupId>
                 <artifactId>rcf-scanner-maven-plugin</artifactId>
-                <version>0.1.0</version>
+                <version>0.1.0-20171127</version>
                 <executions>
                     <execution>
                         <id>create-src-info</id>
